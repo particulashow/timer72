@@ -41,6 +41,7 @@ body{
   letter-spacing: .8px;
   line-height: 1;
   font-size: clamp(54px, 9vw, 120px);
+  font-variant-numeric: tabular-nums;
 }
 
 .sub{
