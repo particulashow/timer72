@@ -1,138 +1,57 @@
 :root{
-  --bg: transparent;
+  --glass: rgba(0,0,0,.55);
+  --glass2: rgba(0,0,0,.35);
+  --stroke: rgba(255,255,255,.20);
 
-  /* default: DARK para fundo claro */
-  --glass: rgba(0,0,0,.78);
-  --glass2: rgba(0,0,0,.55);
-  --stroke: rgba(255,255,255,.16);
-  --stroke2: rgba(255,255,255,.10);
-
-  --text: rgba(255,255,255,.96);
-  --muted: rgba(255,255,255,.74);
-
-  --shadow: rgba(0,0,0,.60);
-  --backdrop: rgba(0,0,0,.22);
-
-  --accent: #60a5fa;
-}
-
-:root[data-theme="light"]{
-  --glass: rgba(255,255,255,.78);
-  --glass2: rgba(255,255,255,.55);
-  --stroke: rgba(0,0,0,.14);
-  --stroke2: rgba(0,0,0,.10);
-
-  --text: rgba(0,0,0,.90);
-  --muted: rgba(0,0,0,.62);
-
-  --shadow: rgba(0,0,0,.28);
-  --backdrop: rgba(0,0,0,.10);
-
-  --accent: #2563eb;
+  --text: #ffffff;
+  --accent: #ff8a00;
 }
 
 *{ box-sizing:border-box; }
-html, body{ height:100%; }
-body{
+
+html, body{
   margin:0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  padding:0;
+  background: transparent;
+  font-family: "Rubik", sans-serif;
   overflow:hidden;
 }
 
-.overlay{
-  height:100%;
-  width:100%;
+/* Caixa compacta para canto da live */
+#timerBox{
+  width: 380px;
+  padding: 18px 20px;
+  border-radius: 22px;
+
+  background: linear-gradient(180deg, var(--glass), var(--glass2));
+  border: 2px solid var(--stroke);
+
+  box-shadow:
+    0 0 18px rgba(255,138,0,.35),
+    0 0 40px rgba(255,138,0,.25);
+
   display:flex;
+  flex-direction:column;
   align-items:center;
-  justify-content:center;
-  padding: 18px;
-}
-
-.timer-card{
-  width: min(920px, 92vw);
-  padding: 26px 26px 22px;
-  border-radius: 26px;
-  border: 1px solid var(--stroke);
-  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(0,0,0,.22));
-  box-shadow: 0 28px 120px var(--shadow);
-  position: relative;
-  overflow:hidden;
-}
-
-.timer-card::before{
-  content:"";
-  position:absolute;
-  inset:-18px;
-  border-radius: 34px;
-  background: radial-gradient(closest-side, var(--backdrop), transparent 70%);
-  filter: blur(10px);
-  opacity: .95;
-  pointer-events:none;
-  z-index:0;
-}
-
-.timer-card > *{ position:relative; z-index:1; }
-
-.title{
-  font-weight: 950;
-  letter-spacing: .22px;
-  font-size: 16px;
-  opacity: .95;
-  text-transform: uppercase;
-  display:flex;
-  gap:10px;
-  align-items:center;
-  justify-content:center;
-  margin-bottom: 10px;
-}
-
-.title::before{
-  content:"";
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: var(--accent);
-  box-shadow: 0 0 0 8px color-mix(in srgb, var(--accent) 22%, transparent);
-}
-
-.time{
-  font-size: clamp(56px, 9vw, 112px);
-  font-weight: 1000;
-  letter-spacing: .6px;
-  line-height: 1;
-  text-align:center;
-  text-shadow: 0 22px 90px rgba(0,0,0,.65);
-  margin: 10px 0 14px;
-}
-
-.sub{
-  text-align:center;
-  font-size: clamp(14px, 2.2vw, 20px);
-  color: var(--muted);
-  font-weight: 800;
-  letter-spacing: .22px;
-}
-
-.meta{
-  margin-top: 18px;
-  display:flex;
   gap: 10px;
-  justify-content:center;
-  flex-wrap:wrap;
 }
 
-.pill{
-  border: 1px solid var(--stroke2);
-  background: rgba(0,0,0,.18);
-  padding: 8px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  color: var(--muted);
+/* Subtítulo à largura do cronómetro */
+#subtitle{
+  width: 100%;
+  text-align:center;
+  font-size: 22px;
   font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--text);
 }
 
-:root[data-theme="light"] .pill{
-  background: rgba(255,255,255,.55);
+/* Cronómetro */
+#countdown{
+  width: 100%;
+  text-align:center;
+  font-size: 58px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: var(--accent);
 }
