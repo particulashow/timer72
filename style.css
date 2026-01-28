@@ -1,56 +1,104 @@
 :root{
-  --glass: rgba(0,0,0,.55);
-  --glass2: rgba(0,0,0,.35);
-  --stroke: rgba(255,255,255,.20);
+  --glass: rgba(0,0,0,.50);
+  --glass2: rgba(0,0,0,.32);
 
-  --text: #ffffff;
+  --stroke: rgba(255,0,0,.35);
+  --text: rgba(255,255,255,.96);
+  --muted: rgba(255,255,255,.72);
+
+  --accent-red: #ff8a00;
 }
 
 *{ box-sizing:border-box; }
-
 html, body{
   margin:0;
   padding:0;
+  width:800px;
+  height:620px;
   background: transparent;
-  font-family: "Rubik", sans-serif;
+  font-family: "Rubik", system-ui, sans-serif;
   overflow:hidden;
 }
 
-/* Caixa compacta para canto da live */
-#timerBox{
-  width: 380px;
-  padding: 18px 20px;
-  border-radius: 22px;
+.overlay{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 20px;
+}
 
-  background: linear-gradient(180deg, var(--glass), var(--glass2));
-  border: 2px solid var(--stroke);
-
-  box-shadow:
-    0 0 18px rgba(255,255,255,.25),
-    0 0 40px rgba(255,255,255,.15);
-
+.wrap{
+  width: 100%;
   display:flex;
   flex-direction:column;
-  align-items:center;
+}
+
+.card{
+  position: relative;
+  overflow:hidden;
+  border-radius: 32px;
+  border: 2px solid var(--stroke);
+  background: linear-gradient(180deg, var(--glass), var(--glass2));
+  padding-bottom: 20px;
+
+  box-shadow:
+    0 0 25px rgba(255,0,0,.35),
+    0 0 60px rgba(255,0,0,.25);
+}
+
+.title-wrap{
+  padding: 34px 20px 6px;
+  text-align:center;
+  width: 100%;
+}
+
+.title{
+  font-size: 62px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  line-height: 1.05;
+  color: var(--text);
+}
+
+.subtitle{
+  margin-top: 14px;
+  font-size: 32px;
+  color: var(--muted);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 1px;
+}
+
+.link{
+  font-size: 54px;
+  font-weight: 900;
+  color: var(--accent-red);
+  letter-spacing: 2px;
+  word-break: break-all;
+}
+
+.timer-card{
+  padding: 10px 10px 10px;
+  display:flex;
+  flex-direction:column;
   gap: 10px;
 }
 
-/* Cronómetro */
-#countdown{
-  width: 100%;
-  text-align:center;
-  font-size: 58px;
+.big{
+  font-size: 130px;
   font-weight: 900;
   letter-spacing: 4px;
-  color: var(--text);
+  line-height: 1;
+  text-align:center;
+  color: var(--accent-red);
 }
 
-/* Subtítulo por baixo */
-#subtitle{
-  width: 100%;
-  text-align:center;
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  color: var(--text);
+.blink{
+  animation: blinkAnim 0.5s steps(2, start) infinite;
+}
+
+@keyframes blinkAnim{
+  50% { opacity: 0; }
 }
