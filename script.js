@@ -1,38 +1,60 @@
-/**
- * CRONÓMETRO ancorado num "start" fixo
- *
- * Usa:
- * ?start=2026-01-27T18:00:00
- *
- * (interpreta como hora local do browser)
- */
-
 const params = new URLSearchParams(location.search);
-const el = document.getElementById("timer");
 
-function pad(n){ return String(n).padStart(2,"0"); }
+const theme = (params.get("theme") || "dark").toLowerCase();
+document.documentElement.dataset.theme = theme;
 
-function parseStart(){
-  const startStr = params.get("start");
-  if (!startStr) return Date.now(); // fallback: começa "agora" (para testes)
+const tz = params.get("tz") || "Europe/Lisbon";
+const label = params.get("label") || "DENTRO DE UM TESLA Y";
+const hours = Math.max(1, parseInt(params.get("hours") || "72", 10));
 
-  const d = new Date(startStr);
-  return isNaN(d.getTime()) ? Date.now() : d.getTime();
+const titleEl = document.getElementById("title");
+const timeEl = document.getElementById("time");
+const subEl = document.getElementById("sub");
+const pillStart = document.getElementById("pillStart");
+const pillEnd = document.getElementById("pillEnd");
+
+subEl.textContent = label;
+
+// start pode ser ISO: 2026-01-28T13:00:00
+const startRaw = params.get("start");
+const start = startRaw ? new Date(startRaw) : new Date();
+const end = new Date(start.getTime() + hours * 3600 * 1000);
+
+function fmt(dt){
+  try{
+    return new Intl.DateTimeFormat("pt-PT", {
+      timeZone: tz,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit"
+    }).format(dt);
+  }catch{
+    return dt.toLocaleString("pt-PT");
+  }
 }
 
-const startAt = parseStart();
+pillStart.textContent = `Início: ${fmt(start)}`;
+pillEnd.textContent = `Fim: ${fmt(end)}`;
+
+titleEl.textContent = `CRONÓMETRO ${hours}H`;
+
+function pad(n){ return String(n).padStart(2, "0"); }
 
 function tick(){
-  const diff = Date.now() - startAt;
-  const total = Math.max(0, Math.floor(diff / 1000));
+  const now = new Date();
+  let diff = Math.floor((now.getTime() - start.getTime()) / 1000);
 
-  const hours = Math.floor(total / 3600);
-  const mins  = Math.floor((total % 3600) / 60);
-  const secs  = total % 60;
+  if (diff < 0) diff = 0;
 
-  // horas podem passar 99, e está tudo bem (ex: 120:15:09)
-  el.textContent = `${pad(hours)}:${pad(mins)}:${pad(secs)}`;
+  const hh = Math.floor(diff / 3600);
+  const mm = Math.floor((diff % 3600) / 60);
+  const ss = diff % 60;
+
+  timeEl.textContent = `${pad(hh)}:${pad(mm)}:${pad(ss)}`;
 }
 
 tick();
-setInterval(tick, 250);
+setInterval(tick, 250); // mais responsivo
