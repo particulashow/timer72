@@ -4,7 +4,6 @@
   --stroke: rgba(255,255,255,.20);
 
   --text: #ffffff;
-  --accent: #ff8a00;
 }
 
 *{ box-sizing:border-box; }
@@ -27,23 +26,13 @@ html, body{
   border: 2px solid var(--stroke);
 
   box-shadow:
-    0 0 18px rgba(255,138,0,.35),
-    0 0 40px rgba(255,138,0,.25);
+    0 0 18px rgba(255,255,255,.25),
+    0 0 40px rgba(255,255,255,.15);
 
   display:flex;
   flex-direction:column;
   align-items:center;
   gap: 10px;
-}
-
-/* Subtítulo à largura do cronómetro */
-#subtitle{
-  width: 100%;
-  text-align:center;
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  color: var(--text);
 }
 
 /* Cronómetro */
@@ -53,5 +42,15 @@ html, body{
   font-size: 58px;
   font-weight: 900;
   letter-spacing: 4px;
-  color: var(--accent);
+  color: var(--text);
+}
+
+/* Subtítulo por baixo */
+#subtitle{
+  width: 100%;
+  text-align:center;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--text);
 }
