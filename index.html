@@ -1,26 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Timer 72h</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=400, initial-scale=1.0">
+  <title>Cronómetro 72h</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <main class="overlay">
-    <section class="card timer-card" aria-live="polite">
-      <div class="title" id="title">CRONÓMETRO 72H</div>
 
-      <div class="time" id="time">00:00:00</div>
-
-      <div class="sub" id="sub">DENTRO DE UM TESLA Y</div>
-
-      <div class="meta">
-        <span class="pill" id="pillStart">Início: --</span>
-        <span class="pill" id="pillEnd">Fim: --</span>
-      </div>
-    </section>
-  </main>
+  <div id="timerBox">
+    <div id="subtitle">DENTRO DE UM TESLA Y</div>
+    <div id="countdown">72:00:00</div>
+  </div>
 
   <script src="script.js"></script>
 </body>
